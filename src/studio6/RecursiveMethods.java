@@ -62,23 +62,27 @@ public class RecursiveMethods {
 		// FIXME create a helper method that can recursively reverse the given array
 		if (array.length == 0)
 			return new int[0];
-		else if (array.length == 1)
-			return array;
 		else {
 			int[] reversed = new int[array.length];
 			for(int i = 0; i <= array.length-1; i++) 
 				reversed[i] = array[i];
+			reverseProcess(array, reversed, 0, array.length-1);
 			return reversed;
 		}
 	}
-	public static int index(int i) {
-		if (i == 0)
-			return 0;
+
+	private static void reverseProcess(int[] array, int[] reversed, int i, int mi) {
+		if (i >= mi) {
+			return;
+		}
 		else {
-			i += 1;
-			return index(i);
+			int temp = array[i];
+			reversed[i] = array[mi];
+			reversed[mi] = temp;
+			reverseProcess(array, reversed, i + 1, mi - 1);
 		}
 	}
+
 
 	/**
 	 * @param xCenter                       x-coordinate of the center of the circle
